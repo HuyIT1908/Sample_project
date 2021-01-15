@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.sample_project">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="BookManager"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Sample_project">
+        <activity android:name=".ThongKeDoanhThuActivity"></activity>
+        <activity android:name=".LuotSachBanChayActivity" />
+        <activity android:name=".ListHoaDonChiTietByIDActivity" />
+        <activity android:name=".HoaDonChiTietActivity" />
+        <activity android:name=".HoaDonActivity" />
+        <activity android:name=".NguoiDungDetailActivity" />
+        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".Thong_ke_top10Activity" />
+        <activity android:name=".Thong_keActivity" />
+        <activity android:name=".Quan_li_hoa_donActivity" />
+        <activity android:name=".Nhap_hoa_donActivity" />
+        <activity android:name=".Quan_li_sachActivity" />
+        <activity android:name=".Add_bookActivity" />
+        <activity android:name=".Quan_li_ds_tlActivity" />
+        <activity android:name=".Add_the_loaiActivity" />
+        <activity android:name=".Quan_li_ds_userActivity" />
+        <activity android:name=".Add_user_Activity" />
+        <activity android:name=".Log_in_Activity" />
+        <activity android:name=".Welcome_screen_Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
+    </application>
+
+</manifest>
