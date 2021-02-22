@@ -2,6 +2,7 @@ package com.example.sample_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +15,7 @@ import com.example.sample_project.Models.NguoiDung;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class ChangePasswordActivity extends AppCompatActivity {
-    TextInputLayout edPass, edRePass;
+    TextInputLayout ed_user, edPass, edRePass;
     NguoiDungDAO nguoiDungDAO;
 
     @Override
@@ -23,8 +24,21 @@ public class ChangePasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_change_password);
         setTitle("ĐỔI MẬT KHẨU");
 
+        ed_user = findViewById(R.id.ed_change_user_pw);
         edPass = (TextInputLayout) findViewById(R.id.ed_change_Password);
         edRePass = (TextInputLayout) findViewById(R.id.ed_change_re_Password);
+
+        SharedPreferences pref = getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        String strUserName = pref.getString("USERNAME", "");
+        ed_user.getEditText().setText(strUserName);
+        ed_user.setEnabled(false);
+        ed_user.setCounterEnabled(true);
+        edPass.setCounterEnabled(true);
+        edRePass.setCounterEnabled(true);
+    }
+    public void cancel_change_pw(View view){
+        edPass.getEditText().setText("");
+        edRePass.getEditText().setText("");
     }
 
     public int validateForm() {

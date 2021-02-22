@@ -47,6 +47,7 @@ public class CartAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
+        ImageView img_icon_hd;
         TextView txtMaSach;
         TextView txtSoLuong;
         TextView txtGiaBia;
@@ -61,6 +62,7 @@ public class CartAdapter extends BaseAdapter {
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.show_hdct, null);
 
+            holder.img_icon_hd = (ImageView) convertView.findViewById(R.id.ivIcon_5);
             holder.txtMaSach = (TextView) convertView.findViewById(R.id.tv_MaSach_3);
             holder.txtSoLuong = (TextView) convertView.findViewById(R.id.tv_SoLuong_3);
             holder.txtGiaBia = (TextView) convertView.findViewById(R.id.tv_GiaBia_3);
@@ -82,6 +84,7 @@ public class CartAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         HoaDonChiTiet _entry = (HoaDonChiTiet) arrHoaDonChiTiet.get(position);
+        holder.img_icon_hd.setImageResource(R.drawable.hdicon);
         holder.txtMaSach.setText("Mã sách: " + _entry.getSach().getMaSach());
         holder.txtSoLuong.setText("Số lượng: " + _entry.getSoLuongMua());
         holder.txtGiaBia.setText("Giá bìa: " + _entry.getSach().getGiaBia() + " vnd");

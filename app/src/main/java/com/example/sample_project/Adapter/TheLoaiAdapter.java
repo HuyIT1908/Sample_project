@@ -2,12 +2,16 @@ package com.example.sample_project.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.example.sample_project.DAO.TheLoaiDAO;
 import com.example.sample_project.Models.TheLoai;
@@ -70,9 +74,26 @@ public class TheLoaiAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
 
-                    theLoaiDAO.deleteTheLoaiByID(arrTheLoai.get(position).getMaTheLoai());
-                    arrTheLoai.remove(position);
-                    notifyDataSetChanged();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setCancelable(false);
+                    builder.setTitle("Thông báo").setMessage("Bạn có chắc chắn muốn xóa không ?");
+                    builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            theLoaiDAO.deleteTheLoaiByID(arrTheLoai.get(position).getMaTheLoai());
+                            arrTheLoai.remove(position);
+                            notifyDataSetChanged();
+                            Toast.makeText(context , "Đã xóa thành công !!!",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
             });
             convertView.setTag(holder);

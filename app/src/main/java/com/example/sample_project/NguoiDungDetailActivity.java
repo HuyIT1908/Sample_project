@@ -24,7 +24,9 @@ public class NguoiDungDetailActivity extends AppCompatActivity {
         setTitle("CHI TIẾT NGƯỜI DÙNG");
         edFullName = (TextInputLayout) findViewById(R.id.ed_update_full_name);
         edPhone = (TextInputLayout) findViewById(R.id.ed_update_phone);
+
         nguoiDungDAO = new NguoiDungDAO(this);
+
         Intent in = getIntent();
         Bundle b = in.getExtras();
         fullname = b.getString("FULLNAME");
@@ -39,10 +41,12 @@ public class NguoiDungDetailActivity extends AppCompatActivity {
                 edPhone.getEditText().getText().toString(),
                 edFullName.getEditText().getText().toString()) > 0) {
             Toast.makeText(getApplicationContext(), "Lưu thành công", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 
     public void Huy(View view) {
-        finish();
+        edPhone.getEditText().setText("");
+        edFullName.getEditText().setText("");
     }
 }

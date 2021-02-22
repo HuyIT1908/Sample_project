@@ -13,13 +13,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 app:srcCompat="@drawable/logo" />
 
@@ -56,10 +56,11 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPassword"
+                android:password="false"
                 android:textSize="18dp" />
 
             <CheckBox
-                android:id="@+id/chkRememberPass"
+                android:id="@+id/chkRememberPass_7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -91,6 +92,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
+                    android:onClick="huy"
                     android:text="hủy" />
             </LinearLayout>
         </LinearLayout>

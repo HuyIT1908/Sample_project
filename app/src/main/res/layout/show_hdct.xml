@@ -3,18 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_height="120dp">
 
     <ImageView
         android:id="@+id/ivIcon_5"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_centerVertical="true"
         android:scaleType="fitXY"
         tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="match_parent"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_toRightOf="@id/ivIcon_5"
@@ -32,23 +33,23 @@
             android:id="@+id/tv_SoLuong_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:gravity="center_vertical" />
+            android:gravity="center_vertical"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_GiaBia_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:gravity="center_vertical" />
+            android:gravity="center_vertical"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_ThanhTien_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:text="Thanh tien"
-            android:textStyle="bold"
-            android:gravity="center_vertical" />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <ImageView

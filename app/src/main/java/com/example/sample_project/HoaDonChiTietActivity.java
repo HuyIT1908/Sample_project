@@ -38,11 +38,13 @@ public class HoaDonChiTietActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hoa_don_chi_tiet);
 
         setTitle("CHI TIẾT HOÁ ĐƠN");
+
         edMaSach = (EditText) findViewById(R.id.ed_MaSach_5);
         edMaHoaDon = (EditText) findViewById(R.id.ed_MaHoaDon_3);
         edSoLuong = (EditText) findViewById(R.id.ed_So_Luong_Mua_3);
         lvCart = (ListView) findViewById(R.id.lvCart);
         tvThanhTien = (TextView) findViewById(R.id.tv_ThanhTien);
+
         adapter = new CartAdapter(this, dsHDCT);
         lvCart.setAdapter(adapter);
         Intent in = getIntent();
@@ -94,7 +96,7 @@ public class HoaDonChiTietActivity extends AppCompatActivity {
                 thanhTien = thanhTien + hd.getSoLuongMua() *
                         hd.getSach().getGiaBia();
             }
-            tvThanhTien.setText("Tổng tiền: " + thanhTien);
+            tvThanhTien.setText("Tổng tiền :  " + thanhTien + " VND");
         } catch (Exception ex) {
             Log.e("Error", ex.toString());
         }

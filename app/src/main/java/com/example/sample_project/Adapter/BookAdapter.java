@@ -1,7 +1,9 @@
 package com.example.sample_project.Adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sample_project.DAO.SachDAO;
 import com.example.sample_project.Models.Sach;
@@ -71,14 +74,30 @@ public class BookAdapter extends BaseAdapter implements Filterable {
             holder.txtBookPrice = (TextView) convertView.findViewById(R.id.tvBookPrice);
             holder.txtSoLuong = (TextView) convertView.findViewById(R.id.tvSoLuong);
             holder.imgDelete = (ImageView) convertView.findViewById(R.id.ivDelete_3);
+
             holder.imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    sachDAO.deleteSachByID(arrSach.get(position).getMaSach());
-                    arrSach.remove(position);
-                    notifyDataSetChanged();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Thông Báo").setMessage("Bạn có chắc chắn muốn xóa không ?");
+                    builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            sachDAO.deleteSachByID(arrSach.get(position).getMaSach());
+                            arrSach.remove(position);
+                            notifyDataSetChanged();
+                            Toast.makeText(context, "Đã xóa thành công !!!",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.setNegativeButton("hủy", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
             });
             convertView.setTag(holder);

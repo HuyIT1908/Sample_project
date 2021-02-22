@@ -17,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final int VERSION = 1;
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, VERSION);
+        super(context, DATABASE_NAME + ".db", null, VERSION);
     }
 
     @Override

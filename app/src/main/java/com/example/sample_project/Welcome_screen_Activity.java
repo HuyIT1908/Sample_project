@@ -16,11 +16,9 @@ public class Welcome_screen_Activity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), Add_user_Activity.class));
+                startActivity(new Intent(getApplicationContext(), Log_in_Activity.class));
                 finish();
             }
-        }, 0);
-//        Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
+        }, 2000);
     }
 }

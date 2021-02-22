@@ -34,7 +34,10 @@ public class HoaDonActivity extends AppCompatActivity implements DatePickerDialo
         edNgayMua = (EditText) findViewById(R.id.ed_NgayMua);
         edMaHoaDon = (EditText) findViewById(R.id.ed_MaHoaDon);
     }
-
+    public void cancel(View view){
+        edMaHoaDon.setText("");
+        edNgayMua.setText("");
+    }
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar cal = new GregorianCalendar(year, month, dayOfMonth);
@@ -69,7 +72,7 @@ public class HoaDonActivity extends AppCompatActivity implements DatePickerDialo
                 if (hoaDonDAO.inserHoaDon(hoaDon) > 0) {
                     Toast.makeText(getApplicationContext(), "Thêm thành công",
                             Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(HoaDonActivity.this,HoaDonChiTietActivity.class);
+                    Intent intent = new Intent(HoaDonActivity.this , HoaDonChiTietActivity.class);
                     Bundle b = new Bundle();
                     b.putString("MAHOADON", edMaHoaDon.getText().toString());
                     intent.putExtras(b);
@@ -82,6 +85,7 @@ public class HoaDonActivity extends AppCompatActivity implements DatePickerDialo
         } catch (Exception ex) {
             Log.e("Error", ex.toString());
         }
+        finish();
     }
     public int validation(){
         if (edMaHoaDon.getText().toString().isEmpty()||edNgayMua.getText().toString().isEmpty()){

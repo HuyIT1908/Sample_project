@@ -32,13 +32,14 @@ public class Quan_li_hoa_donActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quan_li_hoa_don);
+
         setTitle("HOÁ ĐƠN");
         lvHoaDon = (ListView) findViewById(R.id.lvHoaDon);
         hoaDonDAO = new HoaDonDAO(Quan_li_hoa_donActivity.this);
         try {
             dsHoaDon = hoaDonDAO.getAllHoaDon();
         } catch (Exception e) {
-            Log.d("Error: ", e.toString());
+            Log.d("Error:  ", e.toString());
         }
         adapter = new HoaDonAdapter(this, dsHoaDon);
         lvHoaDon.setAdapter(adapter);
@@ -54,14 +55,28 @@ public class Quan_li_hoa_donActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        lvHoaDon.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                HoaDon hoaDon = (HoaDon) parent.getItemAtPosition(position);
+                Intent intent = new Intent(Quan_li_hoa_donActivity.this, HoaDonChiTietActivity.class);
+                Bundle b = new Bundle();
+                b.putString("MAHOADON", hoaDon.getMaHoaDon());
+                intent.putExtras(b);
+                startActivity(intent);
+                return true;
+            }
+        });
         // TextFilter
         lvHoaDon.setTextFilterEnabled(true);
+
         EditText edSeach = (EditText) findViewById(R.id.ed_Search_3);
         edSeach.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int
                     count) {
-                System.out.println("Text [" + s + "] - Start [" + start + "] - Before [" + before + "] - Count [" + count + "]");
+                System.out.println("Text [" + s + "] - Start [" + start + "] " +
+                        "- Before [" + before + "] - Count [" + count + "]");
                 if (count < before) {
                     adapter.resetData();
                 }

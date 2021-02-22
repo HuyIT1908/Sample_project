@@ -193,6 +193,7 @@ public class HoaDonChiTietDAO {
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             doanhThu = c.getDouble(0);
+            Log.e("-------------------" , doanhThu + "\tdddddddddddddddddddddd");
             c.moveToNext();
         }
         c.close();

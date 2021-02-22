@@ -1,7 +1,9 @@
 package com.example.sample_project.Adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,23 +74,39 @@ public class HoaDonAdapter extends BaseAdapter implements Filterable {
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.show_hoa_don, null);
             holder.img = (ImageView) convertView.findViewById(R.id.ivIcon_4);
-            holder.txtMaHoaDon = (TextView)
-                    convertView.findViewById(R.id.tvMaHoaDon);
+
+            holder.txtMaHoaDon = (TextView) convertView.findViewById(R.id.tvMaHoaDon);
             holder.txtNgayMua = (TextView) convertView.findViewById(R.id.tvNgayMua);
             holder.imgDelete = (ImageView) convertView.findViewById(R.id.ivDelete_4);
+
             holder.imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if
-                    (hoaDonChiTietDAO.checkHoaDon(arrHoaDon.get(position).getMaHoaDon())) {
-                        Toast.makeText(context, "Bạn phải xoá hoá đơn chi tiết trước khi xoá hoá đơn này",
-                                Toast.LENGTH_LONG).show();
-                    } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Thông báo").setMessage("Bạn có chắc chắn muốn xóa không ???");
+                    builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if
+                            (hoaDonChiTietDAO.checkHoaDon(arrHoaDon.get(position).getMaHoaDon())) {
+                                Toast.makeText(context, "Bạn phải xoá hoá đơn chi tiết trước khi xoá hoá đơn này",
+                                        Toast.LENGTH_LONG).show();
+                            } else {
 
-                        hoadonDAO.deleteHoaDonByID(arrHoaDon.get(position).getMaHoaDon());
-                        arrHoaDon.remove(position);
-                        notifyDataSetChanged();
-                    }
+                                hoadonDAO.deleteHoaDonByID(arrHoaDon.get(position).getMaHoaDon());
+                                arrHoaDon.remove(position);
+                                notifyDataSetChanged();
+                            }
+                        }
+                    });
+                    builder.setNegativeButton("hủy", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
             });
             convertView.setTag(holder);

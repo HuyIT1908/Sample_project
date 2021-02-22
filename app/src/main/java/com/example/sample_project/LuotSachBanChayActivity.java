@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -30,12 +31,18 @@ public class LuotSachBanChayActivity extends AppCompatActivity {
         setTitle("TOP 10 SÁCH BÁN CHẠY");
         lvBook = (ListView) findViewById(R.id.lvBookTop);
         edThang = (EditText) findViewById(R.id.edThang);
+        lvBook.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext() , "Chức năng chưa hoàn thiện",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void VIEW_SACH_TOP_10(View view) {
-        if (Integer.parseInt(edThang.getText().toString()) > 13 ||
-                Integer.parseInt(edThang.getText().toString()) < 0) {
-            Toast.makeText(getApplicationContext(), "Không đúng định dạng tháng (1 - 12)",
+        if (Integer.parseInt(edThang.getText().toString()) > 12 ||
+                Integer.parseInt(edThang.getText().toString()) < 1) {
+            Toast.makeText(getApplicationContext(), "Không đúng định dạng tháng ( 1 - 12 )",
                     Toast.LENGTH_SHORT).show();
         } else {
             sachDAO = new SachDAO(LuotSachBanChayActivity.this);

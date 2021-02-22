@@ -21,8 +21,8 @@ public class ThongKeDoanhThuActivity extends AppCompatActivity {
         tvThang = (TextView) findViewById(R.id.tvThongKeThang);
         tvNam = (TextView) findViewById(R.id.tvThongKeNam);
         hoaDonChiTietDAO = new HoaDonChiTietDAO(this);
-        tvNgay.setText("Hôm nay: " + hoaDonChiTietDAO.getDoanhThuTheoNgay());
-        tvThang.setText("Tháng này: " + hoaDonChiTietDAO.getDoanhThuTheoThang());
-        tvNam.setText("Năm này: " + hoaDonChiTietDAO.getDoanhThuTheoNam());
+        tvNgay.setText("Hôm nay :  " + hoaDonChiTietDAO.getDoanhThuTheoNgay() + " VND");
+        tvThang.setText("Tháng này :  " + hoaDonChiTietDAO.getDoanhThuTheoThang() + " VND");
+        tvNam.setText("Năm này :  " + hoaDonChiTietDAO.getDoanhThuTheoNam() + " VND");
     }
 }

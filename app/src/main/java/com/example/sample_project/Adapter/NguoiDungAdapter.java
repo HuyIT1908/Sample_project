@@ -1,13 +1,16 @@
 package com.example.sample_project.Adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sample_project.DAO.NguoiDungDAO;
 import com.example.sample_project.Models.NguoiDung;
@@ -70,10 +73,27 @@ public class NguoiDungAdapter extends BaseAdapter {
             holder.imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Thông báo").setMessage("Bạn có chắc chắn muốn xóa người dùng này không ?");
+                    builder.setPositiveButton("Xóa",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    nguoiDungDAO.deleteNguoiDungByID(arrNguoiDung.get(position).getUserName());
+                                    arrNguoiDung.remove(position);
+                                    notifyDataSetChanged();
+                                    Toast.makeText(context, "Đã xóa người dùng thành công",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    nguoiDungDAO.deleteNguoiDungByID(arrNguoiDung.get(position).getUserName());
-                    arrNguoiDung.remove(position);
-                    notifyDataSetChanged();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
             });
             convertView.setTag(holder);

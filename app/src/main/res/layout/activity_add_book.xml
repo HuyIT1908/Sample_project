@@ -35,22 +35,24 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
                 <Spinner
                     android:id="@+id/spn_the_loai"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="3"
                     android:paddingTop="15dp" />
 
                 <ImageView
                     android:id="@+id/imv_add_the_loai"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_action_add" />
+                    android:layout_height="match_parent"
+                    android:onClick="add_the_loai"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_action_add_2" />
 
             </LinearLayout>
 
@@ -137,6 +139,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
+                    android:onClick="cancel_add_book"
                     android:text="hủy" />
             </LinearLayout>
 

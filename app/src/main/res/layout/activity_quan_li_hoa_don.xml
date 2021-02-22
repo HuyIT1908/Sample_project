@@ -13,9 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="Tìm theo mã hóa đơn"
         android:inputType="textPersonName"
         android:maxLines="1"
-        android:text="Name" />
+        android:textSize="20dp" />
 
     <ListView
         android:id="@+id/lvHoaDon"

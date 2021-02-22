@@ -1,9 +1,12 @@
 package com.example.sample_project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -41,43 +44,55 @@ public class MainActivity extends AppCompatActivity {
 
         Grid_adapter grid_adapter = new Grid_adapter(this, name_grid, img_grid);
         gridView.setAdapter(grid_adapter);
+
         gridView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (name_grid.get(position).equalsIgnoreCase("Người dùng")) {
 
-                    Toast.makeText(getApplicationContext(), "Người dùng",
-                            Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, Add_bookActivity.class);
+
+                    Intent intent = new Intent(MainActivity.this, Quan_li_ds_userActivity.class);
                     startActivity(intent);
 
                 } else if (name_grid.get(position).equalsIgnoreCase("Thể loại")) {
 
-                    Toast.makeText(getApplicationContext(), "Thể loại",
-                            Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this , Quan_li_ds_tlActivity.class));
+
 
                 }else if (name_grid.get(position).equalsIgnoreCase("Sách")) {
 
-                    Toast.makeText(getApplicationContext(), "Sách",
-                            Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this , Quan_li_sachActivity.class));
 
                 }else if (name_grid.get(position).equalsIgnoreCase("Hóa đơn")) {
 
-                    Toast.makeText(getApplicationContext(), "Hóa đơn",
-                            Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this , Quan_li_hoa_donActivity.class));
 
                 }else if (name_grid.get(position).equalsIgnoreCase("Sách bán chạy")) {
 
-                    Toast.makeText(getApplicationContext(), "Sách bán chạy",
-                            Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this , LuotSachBanChayActivity.class ));
 
                 }else if (name_grid.get(position).equalsIgnoreCase("Thống kê")) {
 
-                    Toast.makeText(getApplicationContext(), "Thống kê",
-                            Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this , ThongKeDoanhThuActivity.class));
 
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_login, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.log_out_main:
+                startActivity(new Intent(MainActivity.this , Log_in_Activity.class));
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

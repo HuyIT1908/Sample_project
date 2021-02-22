@@ -65,6 +65,7 @@
                     android:layout_marginEnd="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
+                    android:onClick="updateUser"
                     android:text="sửa" />
 
                 <Button
@@ -74,7 +75,8 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:text="quay lại" />
+                    android:onClick="Huy"
+                    android:text="hủy" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

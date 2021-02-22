@@ -31,6 +31,14 @@ public class Add_user_Activity extends AppCompatActivity {
         edFullName = (TextInputLayout) findViewById(R.id.ed_add_full_name);
         edRePass = (TextInputLayout) findViewById(R.id.ed_add_re_Password);
     }
+    public void cancel_btn(View view){
+        edUser.getEditText().setText("");
+        edPass.getEditText().setText("");
+        edRePass.getEditText().setText("");
+        edPhone.getEditText().setText("");
+        edFullName.getEditText().setText("");
+
+    }
 
     public void showUsers(View view) {
         finish();
@@ -45,8 +53,10 @@ public class Add_user_Activity extends AppCompatActivity {
         try {
             if (validateForm() > 0) {
                 if (nguoiDungDAO.inserNguoiDung(user) > 0) {
+
                     Toast.makeText(getApplicationContext(), "Thêm thành công",
                             Toast.LENGTH_SHORT).show();
+
                 } else {
                     Toast.makeText(getApplicationContext(), "Thêm thất bại",
                             Toast.LENGTH_SHORT).show();
@@ -73,6 +83,10 @@ public class Add_user_Activity extends AppCompatActivity {
             String rePass = edRePass.getEditText().getText().toString();
             if (!pass.equals(rePass)) {
                 Toast.makeText(getApplicationContext(), "Mật khẩu không trùng khớp",
+                        Toast.LENGTH_SHORT).show();
+                check = -1;
+            }else if (edPhone.getEditText().getText().length() > 10){
+                Toast.makeText(getApplicationContext() , "Vui lòng nhập số điện thoại 10 số",
                         Toast.LENGTH_SHORT).show();
                 check = -1;
             }

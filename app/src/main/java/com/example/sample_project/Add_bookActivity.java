@@ -68,9 +68,20 @@ public class Add_bookActivity extends AppCompatActivity {
             edGiaBia.getEditText().setText(b.getString("GIABIA"));
             edSoLuong.getEditText().setText(b.getString("SOLUONG"));
             spnTheLoai.setSelection(checkPositionTheLoai(maTheLoai));
+            edMaSach.setEnabled(false);
         }
     }
-
+    public void cancel_add_book(View view){
+        edMaSach.getEditText().setText("");
+        edTenSach.getEditText().setText("");
+        edTacGia.getEditText().setText("");
+        edNXB.getEditText().setText("");
+        edGiaBia.getEditText().setText("");
+        edSoLuong.getEditText().setText("");
+    }
+    public void add_the_loai(View view){
+        startActivity(new Intent(getApplicationContext() , Add_the_loaiActivity.class));
+    }
     public void showSpinner(View view) {
         sachDAO = new SachDAO(this);
         sachDAO.getAllSach();
@@ -119,5 +130,11 @@ public class Add_bookActivity extends AppCompatActivity {
             }
         }
         return 0;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getTheLoai();
     }
 }

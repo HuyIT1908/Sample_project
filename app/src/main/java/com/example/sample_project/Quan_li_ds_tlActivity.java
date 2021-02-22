@@ -1,6 +1,7 @@
 package com.example.sample_project;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -34,8 +35,10 @@ public class Quan_li_ds_tlActivity extends AppCompatActivity {
         setTitle("THỂ LOẠI");
         lvTheLoai = (ListView) findViewById(R.id.lvTheLoai);
         registerForContextMenu(lvTheLoai);
+
         theLoaiDAO = new TheLoaiDAO(this);
         dsTheLoai = theLoaiDAO.getAllTheLoai();
+
         adapter = new TheLoaiAdapter(this, dsTheLoai);
         lvTheLoai.setAdapter(adapter);
         lvTheLoai.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -43,7 +46,7 @@ public class Quan_li_ds_tlActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 Intent intent = new
-                        Intent(Quan_li_ds_tlActivity.this, Add_the_loaiActivity.class);
+                        Intent(Quan_li_ds_tlActivity.this, The_loai_DetailActivity.class);
                 Bundle b = new Bundle();
                 b.putString("MATHELOAI", dsTheLoai.get(position).getMaTheLoai());
                 b.putString("TENTHELOAI", dsTheLoai.get(position).getTenTheLoai());
@@ -99,9 +102,11 @@ public class Quan_li_ds_tlActivity extends AppCompatActivity {
                 startActivity(intent1);
                 return (true);
             case R.id.menu_ctx_del:
-                Intent intent2 = new
-                        Intent(this, Add_the_loaiActivity.class);
-                startActivity(intent2);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("test").setMessage("hazzz");
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 return (true);
         }
         return super.onContextItemSelected(item);

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,8 +36,10 @@ public class Quan_li_sachActivity extends AppCompatActivity {
 
         setTitle("QUẢN LÝ SÁCH");
         lvBook = (ListView) findViewById(R.id.lvBook);
+
         sachDAO = new SachDAO(this);
         dsSach = sachDAO.getAllSach();
+
         adapter = new BookAdapter(this, dsSach);
         lvBook.setAdapter(adapter);
         lvBook.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -69,7 +72,13 @@ public class Quan_li_sachActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                System.out.println("Text [" + s + "] - Start [" + start + "] \n" +
+                        "\t\t- Before [" + before + "] - Count [" + count + "]");
+                if (count < before) {
+                    adapter.resetData();
+                }
+                adapter.getFilter().filter(s.toString());
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -94,5 +103,20 @@ public class Quan_li_sachActivity extends AppCompatActivity {
                 return(true);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sachDAO = new SachDAO(this);
+        dsSach = sachDAO.getAllSach();
+
+        adapter = new BookAdapter(this, dsSach);
+        lvBook.setAdapter(adapter);
+    }
+    public void search_book(View view){
+        adapter.notifyDataSetChanged();
+        lvBook.setAdapter(adapter);
+        Log.e("------------------" , "search ");
     }
 }

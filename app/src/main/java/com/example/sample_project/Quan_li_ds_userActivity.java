@@ -36,10 +36,12 @@ public class Quan_li_ds_userActivity extends AppCompatActivity {
         dsNguoiDung = nguoiDungDAO.getAllNguoiDung();
         adapter = new NguoiDungAdapter(this, dsNguoiDung);
         lvNguoiDung.setAdapter(adapter);
+
         lvNguoiDung.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
+//                edit info nguoi dung
                 Intent intent = new
                         Intent(Quan_li_ds_userActivity.this, NguoiDungDetailActivity.class);
                 Bundle b = new Bundle();
@@ -88,13 +90,13 @@ public class Quan_li_ds_userActivity extends AppCompatActivity {
                 startActivity(intent);
                 return (true);
             case R.id.logOut:
-                SharedPreferences pref =
-                        getSharedPreferences("USER_FILE", MODE_PRIVATE);
-                SharedPreferences.Editor edit = pref.edit();
-                //xoa tinh trang luu tru truoc do
-                edit.clear();
-                edit.commit();
-                intent = new Intent(Quan_li_ds_userActivity.this, MainActivity.class);
+//                SharedPreferences pref =
+//                        getSharedPreferences("USER_FILE", MODE_PRIVATE);
+//                SharedPreferences.Editor edit = pref.edit();
+//                //xoa tinh trang luu tru truoc do
+//                edit.clear();
+//                edit.commit();
+                intent = new Intent(Quan_li_ds_userActivity.this, Log_in_Activity.class);
                 startActivity(intent);
                 break;
         }

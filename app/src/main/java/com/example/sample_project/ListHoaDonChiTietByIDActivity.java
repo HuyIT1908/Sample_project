@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.sample_project.Adapter.CartAdapter;
 import com.example.sample_project.DAO.HoaDonChiTietDAO;
+import com.example.sample_project.Models.HoaDon;
 import com.example.sample_project.Models.HoaDonChiTiet;
 
 import java.util.ArrayList;
@@ -30,10 +33,20 @@ public class ListHoaDonChiTietByIDActivity extends AppCompatActivity {
         Intent in = getIntent();
         Bundle b = in.getExtras();
         if (b != null) {
-            dsHDCT =
-                    hoaDonChiTietDAO.getAllHoaDonChiTietByID(b.getString("MAHOADON"));
+            dsHDCT = hoaDonChiTietDAO.getAllHoaDonChiTietByID(b.getString("MAHOADON"));
         }
         adapter = new CartAdapter(this, dsHDCT);
         lvCart.setAdapter(adapter);
+        lvCart.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                HoaDonChiTiet hoaDonChiTiet = (HoaDonChiTiet) parent.getItemAtPosition(position);
+                Intent intent = new Intent(ListHoaDonChiTietByIDActivity.this, HoaDonChiTietActivity.class);
+                Bundle b = new Bundle();
+                b.putString("MAHOADON", hoaDonChiTiet.getHoaDon().getMaHoaDon());
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
     }
 }
